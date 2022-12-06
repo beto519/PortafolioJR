@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Portafolio</title>
+    <!--Bootstrap-->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/PortafolioJR.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900" asp-append-version="true" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <!--Adicional css files-->
+    <link rel="stylesheet" href="~/css/fontawesome.css">
+    <link rel="stylesheet" href="~/css/templatemo-eduwell-style.css">
+    <link rel="stylesheet" href="~/css/owl.css">
+    <link rel="stylesheet" href="~/css/lightbox.css">
+
+</head>
+<body>
+  
+
+
+    <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                    <nav class="main-nav">
+                      <!-- ***** Logo Start ***** -->
+                        <a class="logo" id="top" asp-area="" asp-controller="Home" asp-action="Index"> Portafolio<em> JR</em> </a>
+                       
+                      <!-- ***** Logo End ***** -->
+                      <!-- ***** Menu Start ***** -->
+                      <ul class="nav content-nav">
+
+
+                            <li class="nav-item scroll-to-section">
+                                <a class="nav-link text-white"  href="#intereses">Intereses </a>
+                            </li>
+                            <li class="nav-item scroll-to-section">
+                                <a class="nav-link text-white" href="#educacion">Educación</a>
+                            </li>
+                            <li class="nav-item scroll-to-section">
+                                <a class="nav-link text-white" href="#habilidades">Habilidades</a>
+                            </li>
+                            <li class="nav-item scroll-to-section">
+                                <a class="nav-link text-white" href="#proyectos">Proyectos</a>
+                            </li>
+                            <li class="nav-item scroll-to-section">
+                                <a class="nav-link text-white" href="#contact-section">Contacto</a>
+                            </li>
+                      </ul>        
+                      <a class='menu-trigger'>
+                          <span>Menu</span>
+                      </a>
+                      <!-- ***** Menu End ***** -->
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </header>
+   
+            @RenderBody()
+       
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+    <!-- Scripts -->
+    <!-- Bootstrap core JavaScript -->
+
+
+
+    <script src="~/js/isotope.min.js" asp-append-version="true"></script>
+    <script src="~/js/owl-carousel.js" asp-append-version="true"></script>
+    <script src="~/js/lightbox.js" asp-append-version="true"></script>
+    <script src="~/js/tabs.js" asp-append-version="true"></script>
+    <script src="~/js/video.js" asp-append-version="true"></script>
+    <script src="~/js/slick-slider.js" asp-append-version="true"></script>
+    <script src="~/js/custom.js" asp-append-version="true"></script>
+    <script>
+        //according to loftblog tut
+        $('.nav li:first').addClass('active');
+
+        var showSection = function showSection(section, isAnimate) {
+            var
+                direction = section.replace(/#/, ''),
+                reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+                reqSectionPos = reqSection.offset().top - 0;
+
+            if (isAnimate) {
+                $('body, html').animate({
+                    scrollTop: reqSectionPos
+                },
+                    800);
+            } else {
+                $('body, html').scrollTop(reqSectionPos);
+            }
+
+        };
+
+        var checkSection = function checkSection() {
+            $('.section').each(function () {
+                var
+                    $this = $(this),
+                    topEdge = $this.offset().top - 80,
+                    bottomEdge = topEdge + $this.height(),
+                    wScroll = $(window).scrollTop();
+                if (topEdge < wScroll && bottomEdge > wScroll) {
+                    var
+                        currentId = $this.data('section'),
+                        reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+                    reqLink.closest('li').addClass('active').
+                        siblings().removeClass('active');
+                }
+            });
+        };
+
+        $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+            e.preventDefault();
+            showSection($(this).attr('href'), true);
+        });
+
+        $(window).scroll(function () {
+            checkSection();
+        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

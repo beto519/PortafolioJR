@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ProyectoDTO>
+
+@if (Model is not null)
+{
+   <hr />
+    <div class="text-center mis-proyectos">
+          <div class="section-heading">
+                    <h6></h6>
+                    <h4>Mi <em>Educación</em></h4>
+                  
+                </div>
+
+
+    <div class="container" id="proyectos">
+
+        <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
+            @foreach (var proyecto in Model)
+            {
+                <div class="col">
+                    <div class="card h-100 fondo-card">
+                        <img class="card-img-top" src="@proyecto.ImagenUrl" alt="Imagen Proyectos">
+                        <div class="card-body">
+                            <h5 class="card-title color-rojo">@proyecto.Titulo</h5>
+                            <p class="card-text"> @proyecto.Descripcion</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-secondary " href="@proyecto.Link" target="_blank" rel=" noopener noreferrer">Visitar</a>
+                        </div>
+
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+    </div>
+}

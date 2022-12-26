@@ -1016,7 +1016,7 @@ section.testimonials {
 section.testimonials:before {
   position: absolute;
   content: '';
-  background-image: url(../images/testimonials-left-dec.png);
+
   left: 0px;
   top: -140px;
   width: 593px;
